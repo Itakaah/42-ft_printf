@@ -3,38 +3,44 @@
 
 int main(void)
 {
-	int n1, n2, total;
+    int ret1, ret2;
 
-	printf("=== IMPORTANCE DU RETOUR ===\n\n");
+    ret1 = ft_printf("Char: %c\n", 'A');
+    ret2 = printf("Char: %c\n", 'A');
+    printf("Retours: %d vs %d\n\n", ret1, ret2);
 
-	// Test 1 : Compter avec le vrai printf
-	printf("Avec printf :\n");
-	n1 = printf("Hello");
-	printf(" → retourne %d\n", n1);
+    ret1 = ft_printf("String: %s\n", "Hello");
+    ret2 = printf("String: %s\n", "Hello");
+    printf("Retours: %d vs %d\n\n", ret1, ret2);
 
-	n2 = printf("World");
-	printf(" → retourne %d\n", n2);
+    ret1 = ft_printf("Int: %d\n", -42);
+    ret2 = printf("Int: %d\n", -42);
+    printf("Retours: %d vs %d\n\n", ret1, ret2);
 
-	total = n1 + n2;
-	printf("Total : %d caractères\n\n", total);
+	// Test NULL string
+	ret1 = ft_printf("NULL string: %s\n", NULL);
+	ret2 = printf("NULL string: %s\n", NULL);
+	printf("Retours: %d vs %d\n\n", ret1, ret2);
 
-	// Test 2 : Compter avec nos fonctions
-	printf("Avec nos fonctions :\n");
-	n1 = ft_putstr_fd("Hello", 1);
-	printf(" → retourne %d\n", n1);
+	// Test NULL pointer
+	ret1 = ft_printf("NULL pointer: %p\n", NULL);
+	ret2 = printf("NULL pointer: %p\n", NULL);
+	printf("Retours: %d vs %d\n\n", ret1, ret2);
 
-	n2 = ft_putstr_fd("World", 1);
-	printf(" → retourne %d\n", n2);
+	// Test INT_MIN
+	ret1 = ft_printf("INT_MIN: %d\n", -2147483648);
+	ret2 = printf("INT_MIN: %d\n", -2147483648);
+	printf("Retours: %d vs %d\n\n", ret1, ret2);
 
-	total = n1 + n2;
-	printf("Total : %d caractères\n\n", total);
+	// Test %%
+	ret1 = ft_printf("Percent: %%\n");
+	ret2 = printf("Percent: %%\n");
+	printf("Retours: %d vs %d\n\n", ret1, ret2);
 
-	// Test 3 : Simuler ft_printf
-	printf("Simuler ft_printf (\"Hello %s\", \"42\"):\n");
-	total = 0;
-	total += ft_putstr_fd("Hello ", 1);
-	total += ft_putstr_fd("42", 1);
-	printf("\nTotal caractères affichés : %d (attendu: 8)\n", total);
+	// Test hex
+	ret1 = ft_printf("Hex: %x et %X\n", 255, 255);
+	ret2 = printf("Hex: %x et %X\n", 255, 255);
+	printf("Retours: %d vs %d\n\n", ret1, ret2);
 
-	return (0);
+    return (0);
 }
