@@ -61,7 +61,7 @@ J'ai choisi de séparer le code en plusieurs fichiers pour que ce soit plus clai
 
 ```
 ft_printf/
-├── ft_printf.c      # fonction principale et handle_format
+├── ft_printf.c      # fonction principale
 ├── ft_printf.h      # header avec les prototypes
 ├── Makefile
 └── utils/
@@ -95,9 +95,9 @@ Pour `ft_putnbr` et `ft_puthex`, j'utilise la récursion parce que c'est plus si
 
 ### Documentation utilisée
 
-- man 3 printf -> pour comprendre le comportement de printf
-- man 3 stdarg -> pour les fonctions va_start, va_arg, va_end
-- man 3 write -> pour l'écriture sur la sortie standard
+- man printf -> pour comprendre le comportement de printf
+- man stdarg -> pour les fonctions va_start, va_arg, va_end
+- man write -> pour l'écriture sur la sortie standard
 
 ### Liens utiles
 
