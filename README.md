@@ -4,109 +4,105 @@
 
 ## Description
 
-ft_printf est une réimplémentation de la fonction `printf()` de la librairie standard C. Le but de ce projet est d'apprendre à utiliser les fonctions variadiques en C et de comprendre comment fonctionne le formatage de chaines de caractères.
+ft_printf is a reimplementation of the `printf()` function from the C standard library. The goal of this project is to learn how to use variadic functions in C and understand how string formatting works.
 
-La fonction prend en paramètre une chaine de format et un nombre variable d'arguments, puis affiche le résultat formaté sur la sortie standard.
+The function takes a format string and a variable number of arguments, then prints the formatted result to standard output.
 
-### Conversions supportées
+### Supported conversions
 
-- `%c` : affiche un caractère
-- `%s` : affiche une chaine de caractères
-- `%p` : affiche un pointeur en hexadécimal
-- `%d` : affiche un nombre décimal (base 10)
-- `%i` : affiche un entier en base 10
-- `%u` : affiche un nombre décimal non signé
-- `%x` : affiche un nombre en hexadécimal (minuscules)
-- `%X` : affiche un nombre en hexadécimal (majuscules)
-- `%%` : affiche un signe pourcentage
+- `%c` : prints a character
+- `%s` : prints a string
+- `%p` : prints a pointer in hexadecimal
+- `%d` : prints a decimal number (base 10)
+- `%i` : prints an integer in base 10
+- `%u` : prints an unsigned decimal number
+- `%x` : prints a number in hexadecimal (lowercase)
+- `%X` : prints a number in hexadecimal (uppercase)
+- `%%` : prints a percent sign
 
 ## Instructions
 
 ### Compilation
 
-Pour compiler la librairie :
+To compile the library:
 
 ```bash
 make
 ```
 
-Cela va créer le fichier `libftprintf.a` à la racine du projet.
+This will create the `libftprintf.a` file at the root of the project.
 
-### Utilisation
+### Usage
 
-Pour utiliser ft_printf dans ton projet :
+To use ft_printf in your project:
 
-1. Inclure le header :
+1. Include the header:
 ```c
 #include "ft_printf.h"
 ```
 
-2. Compiler avec la librairie :
+2. Compile with the library:
 ```bash
 cc main.c libftprintf.a
 ```
 
-### Règles du Makefile
+### Makefile rules
 
-- `make` ou `make all` : compile la librairie
-- `make clean` : supprime les fichiers objets
-- `make fclean` : supprime les fichiers objets et la librairie
-- `make re` : recompile tout
+- `make` or `make all` : compiles the library
+- `make clean` : deletes object files
+- `make fclean` : deletes object files and the library
+- `make re` : recompiles everything
 
-## Algorithme et structure de données
+## Algorithm and data structures
 
-### Architecture du projet
+### Project architecture
 
-J'ai choisi de séparer le code en plusieurs fichiers pour que ce soit plus clair :
+I chose to separate the code into multiple files to make it clearer:
 
 ```
 ft_printf/
-├── ft_printf.c      # fonction principale
-├── ft_printf.h      # header avec les prototypes
+├── ft_printf.c      # main function
+├── ft_printf.h      # header with prototypes
 ├── Makefile
 └── utils/
-    ├── ft_putchar.c         # affiche un char
-    ├── ft_putstr.c          # affiche une string
-    ├── ft_putnbr.c          # affiche un int
-    ├── ft_putnbr_unsigned.c # affiche un unsigned int
-    ├── ft_puthex.c          # affiche en hexadécimal
-    └── ft_putpointer.c      # affiche un pointeur
+    ├── ft_putchar.c         # prints a char
+    ├── ft_putstr.c          # prints a string
+    ├── ft_putnbr.c          # prints an int
+    ├── ft_putnbr_unsigned.c # prints an unsigned int
+    ├── ft_puthex.c          # prints in hexadecimal
+    └── ft_putpointer.c      # prints a pointer
 ```
 
-### Fonctionnement
+### How it works
 
-1. `ft_printf` parcourt la chaine de format caractère par caractère
-2. Quand on trouve un `%`, on regarde le caractère suivant pour savoir quelle conversion faire
-3. On appelle `handle_format` qui dispatch vers la bonne fonction selon le spécificateur
-4. Chaque fonction retourne le nombre de caractères affichés
-5. On additionne tout pour retourner le total à la fin
+1. `ft_printf` goes through the format string character by character
+2. When we find a `%`, we look at the next character to know which conversion to do
+3. We call `handle_format` which dispatches to the right function depending on the specifier
+4. Each function returns the number of characters printed
+5. We add everything up to return the total at the end
 
-### Gestion des cas spéciaux
+### Special cases handling
 
-- **String NULL** : affiche "(null)"
-- **Pointeur NULL** : affiche "(nil)" sur Linux
-- **INT_MIN (-2147483648)** : géré directement avec un write car on ne peut pas faire `-n` dessus
-
-### Pourquoi j'ai utilisé la récursion
-
-Pour `ft_putnbr` et `ft_puthex`, j'utilise la récursion parce que c'est plus simple pour afficher les chiffres dans le bon ordre. On divise par 10 (ou 16 pour l'hexa) jusqu'à avoir un seul chiffre, puis on affiche en remontant.
+- **NULL string** : prints "(null)"
+- **NULL pointer** : prints "(nil)" on Linux
+- **INT_MIN (-2147483648)** : handled directly with write because we can't do `-n` on it
 
 ## Resources
 
-### Documentation utilisée
+### Documentation used
 
-- man printf -> pour comprendre le comportement de printf
-- man stdarg -> pour les fonctions va_start, va_arg, va_end
-- man write -> pour l'écriture sur la sortie standard
+- man printf -> to understand printf behavior
+- man stdarg -> for va_start, va_arg, va_end functions
 
-### Liens utiles
+### Useful links
 
-- [Documentation GNU sur printf](https://www.gnu.org/software/libc/manual/html_node/Formatted-Output-Functions.html)
-- [Tutoriel sur les fonctions variadiques](https://en.cppreference.com/w/c/variadic)
+- [GNU documentation on printf](https://www.gnu.org/software/libc/manual/html_node/Formatted-Output-Functions.html)
+- [Tutorial on variadic functions](https://en.cppreference.com/w/c/variadic)
 
-### Utilisation de l'IA
+### AI usage
 
-J'ai utilisé l'IA pour :
-- Comprendre certains concepts comme les fonctions variadiques
-- Debugger quelques erreurs de segfault
-- Vérifier la logique de mon code
+I used AI for:
+- Understanding some concepts like variadic functions
+- Debugging some segfault errors
+- Checking my code logic
+- Creating exhaustive test codes
